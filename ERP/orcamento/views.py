@@ -13,6 +13,5 @@ def login(request):
 
 def partpicker(request):
     return render(request, 'partpicker.html', {
-        'cpuform': cpuform,
-         "CPU": CPU,
+        'CPU': cpuform
     })
