@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<form action="/login" method="post" class="w-full max-w-sm mx-auto my-8">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <label for="username" class="block text-zinc-700 font-bold mb-2">Username</label>
+  <input type="text" id="username" name="username" required="" class="w-full px-3 py-2 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+  <br>
+      <label for="password" class="block text-zinc-700 font-bold mb-2">Password</label>
+      <input type="password" id="password" name="password" required="" class="w-full px-3 py-2 border border-zinc-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+      <br>
+          <!--FIX (1): Chage it to a login page-->
+          <button type="submit" class="w-full bg-purple-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-sm mt-8">Login</button>
+      </form>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+{% endblock %}
