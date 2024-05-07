@@ -6,5 +6,8 @@ class cpuform(forms.Form):
 
    GPU = forms.ChoiceField(choices="", label="GPU")
 
-class CSVImportForm(forms.Form):
-   csv_file = forms.FileField()
+class CPUImportForm(forms.Form):
+   csv_file = forms.FileField(label='Import CPU')
+
+class GPUImportForm(forms.Form):
+   csv_file = forms.FileField(label='Import GPU')

@@ -17,24 +17,47 @@ def partpicker(request):
         'CPU': cpuform
     })
 
-def import_csv(request):
+def import_cpu(request):
     if request.method == 'POST':
-        form = CSVImportForm(request.POST, request.FILES)
+        form = CPUImportForm(request.POST, request.FILES)
         if form.is_valid():
             csv_file = request.FILES['csv_file']
             data_reader = csv.reader(csv_file.read().decode('utf-8').splitlines())
 
             for row in data_reader:
-                PCPART.objects.create(
-                tipo=['tipo'],
-                nome=['nome'],
-                custo=['custo'],
-                preco=['preco']
+                CPU.objects.get_or_create(
+                tipo=row[0],
+                score=row[2],
+                nome=row[1],
+                custo=row[3],
+                preco=row[4]
             )
 
             return redirect('success_page')  # Redirect to a success page
     else:
-        form = CSVImportForm()
+        form = CPUImportForm()
+
+    return render(request, 'import.html', {'form': form})
+
+def import_gpu(request):
+    if request.method == 'POST':
+        form = GPUImportForm(request.POST, request.FILES)
+        if form.is_valid():
+            csv_file = request.FILES['csv_file']
+            data_reader = csv.reader(csv_file.read().decode('utf-8').splitlines())
+
+            for row in data_reader:
+                GPU.objects.get_or_create(
+                tipo=row[0],
+                nome=row[1],
+                score = row[2],
+                custo=row[3],
+                preco=row[4]
+            )
+
+            return redirect('success_page')  # Redirect to a success page
+    else:
+        form = GPUImportForm()
 
     return render(request, 'import.html', {'form': form})
 
