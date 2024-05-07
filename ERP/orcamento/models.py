@@ -20,30 +20,45 @@ class GPU(models.Model):
     def __str__(self):
         return  self.nome
     
-class PSU:
+class PSU(models.Model):
     tipo = models.CharField(max_length=16)
     nome = models.CharField(max_length=16)
-    power = models.CharField(max_length=16, default='Memória')
     custo = models.FloatField()
     preco = models.FloatField()
     
     def __str__(self):
         return  self.nome
 
-class MOB:
+class MOB(models.Model):
     tipo = models.CharField(max_length=16)
     nome = models.CharField(max_length=16)
-    lga = models.CharField(max_length=16, default='Socket')
     custo = models.FloatField()
     preco = models.FloatField()
     
     def __str__(self):
         return  self.nome
     
-class RAM: 
+class RAM(models.Model): 
     tipo = models.CharField(max_length=16)
     nome = models.CharField(max_length=16)
-    barramento = models.CharField(max_length=16, default='Tipo')
+    custo = models.FloatField()
+    preco = models.FloatField()
+    
+    def __str__(self):
+        return  self.nome
+    
+class STO(models.Model): 
+    tipo = models.CharField(max_length=16)
+    nome = models.CharField(max_length=16)
+    custo = models.FloatField()
+    preco = models.FloatField()
+    
+    def __str__(self):
+        return  self.nome
+    
+class GAB(models.Model): 
+    tipo = models.CharField(max_length=16)
+    nome = models.CharField(max_length=32)
     custo = models.FloatField()
     preco = models.FloatField()
     
