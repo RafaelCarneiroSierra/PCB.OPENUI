@@ -20,30 +20,22 @@ def partpicker(request):
         'RamSelectForm': RamSelectForm,
         'GabSelectForm': GabSelectForm,
         'stoSelectForm': stoSelectForm,
-        'CPU': CPU,
     })
 
 def display_values(request):
     if request.method == 'POST':
-        cpu_form = CpuSelectForm(request.POST)
-        gpu_form = GpuSelectForm(request.POST)
-        psu_form = PSUSelectForm(request.POST)
-        mob_form = MobSelectForm(request.POST)
-        ram_form = RamSelectForm(request.POST)
-        gab_form = GabSelectForm(request.POST)
-        sto_form = stoSelectForm(request.POST)
-        
-        if cpu_form.is_valid() and gpu_form.is_valid() and psu_form.is_valid() and mob_form.is_valid() and ram_form.is_valid() and gab_form.is_valid() and sto_form.is_valid():
-            # Process the form data and pass it to the template for display
-            context = {
-                'cpu_data': cpu_form.cleaned_data['cpu'],
-                'gpu_data': gpu_form.cleaned_data['gpu'],
-                'psu_data': psu_form.cleaned_data['psu'],
-                'mob_data': mob_form.cleaned_data['mob'],
-                'ram_data': ram_form.cleaned_data['ram'],
-                'gab_data': gab_form.cleaned_data['gab'],
-                'sto_data': sto_form.cleaned_data['sto'],
-            }
+        forms = {
+            'cpu': CpuSelectForm(request.POST),
+            'gpu': GpuSelectForm(request.POST),
+            'psu': PSUSelectForm(request.POST),
+            'mob': MobSelectForm(request.POST),
+            'ram': RamSelectForm(request.POST),
+            'gab': GabSelectForm(request.POST),
+            'sto': stoSelectForm(request.POST),
+        }
+        if all(form.is_valid() for form in forms.values()):
+            context = {key: form.cleaned_data[key] for key, form in forms.items()}
             return render(request, 'display_values.html', context)
-    
+
     return render(request, 'partpicker.html')
+
