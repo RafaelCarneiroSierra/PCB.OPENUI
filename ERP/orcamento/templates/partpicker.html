@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
-<form>
-    {{PartsForm}}
-    <input type='submit'>
+
+
+<form method="post" action="{% url 'display_values' %}">
+    {% csrf_token %}
+    {{ CpuSelectForm.as_p }}
+    {{ GpuSelectForm.as_p }}
+    {{ PSUSelectForm.as_p }}
+    {{ MobSelectForm.as_p }}
+    {{ RamSelectForm.as_p }}
+    {{ GabSelectForm.as_p }}
+    {{ stoSelectForm.as_p }}
+    <button type="submit">Submit</button>
 </form>
 
-
-
+    <table>
+        <tr>{{CPU.nome}}</tr>
 {% endblock %}

@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views, importviews
+from .views import *
 
 urlpatterns = [
     path('', views.home, name='base'),
@@ -12,6 +13,7 @@ urlpatterns = [
     path('import-mob/', importviews.import_mob, name='import_mob'),
     path('import-ram/', importviews.import_ram, name='import_ram'),
     path('import-sto/', importviews.import_sto, name='import_sto'),
-    path('import-gab/', importviews.import_gab, name='import_gab')
+    path('import-gab/', importviews.import_gab, name='import_gab'),
+    path('display_values/', views.display_values, name='display_values'),
 ]
 
