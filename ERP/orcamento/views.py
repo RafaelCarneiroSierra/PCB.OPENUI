@@ -13,5 +13,29 @@ def login(request):
 
 def partpicker(request):
     return render(request, 'partpicker.html', {
-        'CPU': cpuform
+        'CpuSelectForm': CpuSelectForm,
+        'GpuSelectForm': GpuSelectForm,
+        'PSUSelectForm': PSUSelectForm,
+        'MobSelectForm': MobSelectForm,
+        'RamSelectForm': RamSelectForm,
+        'GabSelectForm': GabSelectForm,
+        'stoSelectForm': stoSelectForm,
     })
+
+def display_values(request):
+    if request.method == 'POST':
+        forms = {
+            'cpu': CpuSelectForm(request.POST),
+            'gpu': GpuSelectForm(request.POST),
+            'psu': PSUSelectForm(request.POST),
+            'mob': MobSelectForm(request.POST),
+            'ram': RamSelectForm(request.POST),
+            'gab': GabSelectForm(request.POST),
+            'sto': stoSelectForm(request.POST),
+        }
+        if all(form.is_valid() for form in forms.values()):
+            context = {key: form.cleaned_data[key] for key, form in forms.items()}
+            return render(request, 'display_values.html', context)
+
+    return render(request, 'partpicker.html')
+
